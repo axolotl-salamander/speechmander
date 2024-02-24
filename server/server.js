@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
-
+const dbController = require('./controllers/dbController');
 const app = express();
 
 const { createClient, LiveTranscriptionEvents } = require('@deepgram/sdk');
@@ -13,7 +13,7 @@ const testAudio = path.join(__dirname, '../client/assets/audio-test.mp3');
 const PORT = 3000;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.status(200).send('hello world!');
@@ -37,7 +37,9 @@ app.get('/transcribe', async (req, res) => {
 });
 
 // catch-all route handler for any requests to an unknown route
-app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
+app.use((req, res) =>
+  res.status(404).send("This is not the page you're looking for...")
+);
 
 /**
  * express error handler
@@ -60,5 +62,5 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
-  
+
 module.exports = app;

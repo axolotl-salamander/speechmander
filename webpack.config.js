@@ -6,7 +6,7 @@ module.exports = {
   entry: path.join(__dirname, './client/index.js'),
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   //   mode: process.env.NODE_ENV,
   mode: 'development', 
@@ -16,14 +16,14 @@ module.exports = {
     port: 8080,
     static: {
       directory: path.resolve(__dirname),
-      publicPath: '/'
+      publicPath: '/',
     },
     proxy: [
       {
-        context: ['/transcribe'],
-        target: 'http://localhost:3000'
-      }
-    ]
+        context: ['/transcribe', '/test'],
+        target: 'http://localhost:3000',
+      },
+    ],
   },
   module: {
     rules: [
@@ -33,14 +33,14 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
       },
       {
         test: /\.mp3$/,
         loader: 'file-loader'
-      }
-    ]
-  }
+      },
+    ],
+  },
 };
