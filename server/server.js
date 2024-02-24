@@ -1,19 +1,25 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { createClient } = require('@deepgram/sdk');
 
 const dbController = require('./controllers/dbController');
+
 const app = express();
 
-const { createClient } = require('@deepgram/sdk');
 const deepgram = createClient('d3b121ea821296238a901f7eddf6733cfe477c92');
 
 const testAudio = path.join(__dirname, '../client/assets/audio-test.mp3');
 
+const testRouter = require('./routes/testRouter');
+const apiRouter = require('./routes/apiRouter');
 const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//TEST
+// app.use('/test', testRouter);
 
 app.get('/', (req, res) => {
   res.status(200).send('hello world!');
@@ -26,7 +32,7 @@ app.get('/transcribe', async (req, res) => {
       {
         model: 'nova-2',
         smart_format: true,
-        language: 'en-US'
+        language: 'en-US',
       }
     );   
     return res.status(200).send(result);
@@ -35,16 +41,16 @@ app.get('/transcribe', async (req, res) => {
     res.status(500).send('Error transcribing audio.');
   }
 });
+// route to all request from client database
+app.use('/api', apiRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) =>
-  res.status(404).send('This is not the page you\'re looking for...')
+  res.status(404).send("This is not the page you're looking for...")
 );
 
-/**
- * express error handler
- * @see https://expressjs.com/en/guide/error-handling.html#writing-error-handlers
- */
+//  gloabal error handler
+
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
