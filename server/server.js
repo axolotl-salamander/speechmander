@@ -5,7 +5,7 @@ const fs = require('fs');
 const dbController = require('./controllers/dbController');
 const app = express();
 
-const { createClient, LiveTranscriptionEvents } = require('@deepgram/sdk');
+const { createClient } = require('@deepgram/sdk');
 const deepgram = createClient('d3b121ea821296238a901f7eddf6733cfe477c92');
 
 const testAudio = path.join(__dirname, '../client/assets/audio-test.mp3');
@@ -38,7 +38,7 @@ app.get('/transcribe', async (req, res) => {
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) =>
-  res.status(404).send("This is not the page you're looking for...")
+  res.status(404).send('This is not the page you\'re looking for...')
 );
 
 /**

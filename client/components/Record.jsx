@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import testAudio from '../assets/audio-test.mp3';
 
-// import { createClient } from '@deepgram/sdk';
-
-// const deepgram = createClient('proxy', {
-//   restProxy: { url: 'http://localhost:8080' },
-// });
-
 const Record = () => {
 
   const transcribeAudio = async (audio) => {
