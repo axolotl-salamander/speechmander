@@ -12,6 +12,7 @@ module.exports = {
   mode: 'development', 
   plugins: [new HtmlWebpackPlugin({title: 'development', template: './index.html'})],
   devServer: {
+    historyApiFallback: true,
     host: 'localhost',
     port: 8080,
     static: {

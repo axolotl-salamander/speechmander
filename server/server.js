@@ -34,8 +34,8 @@ app.get('/transcribe', async (req, res) => {
         smart_format: true,
         language: 'en-US',
       }
-    );
-    return res.status(200).send(result.results.channels[0].alternatives);
+    );   
+    return res.status(200).send(result);
   } catch (err) {
     console.error('Error: ', err);
     res.status(500).send('Error transcribing audio.');
