@@ -5,7 +5,10 @@ const App = () => {
   return (
     <>
       <div>Hello world!</div>
-      <Record /></>
+      <p>testing</p>
+      <p>hi</p>
+      <Record />
+    </>
   );
 };
 

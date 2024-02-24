@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: path.join(__dirname, './client/index.js'),
@@ -9,6 +10,7 @@ module.exports = {
   },
   //   mode: process.env.NODE_ENV,
   mode: 'development', 
+  plugins: [new HtmlWebpackPlugin({title: 'development', template: './index.html'})],
   devServer: {
     host: 'localhost',
     port: 8080,
@@ -18,7 +20,7 @@ module.exports = {
     },
     proxy: [
       {
-        context: ['/api'],
+        context: ['/transcribe'],
         target: 'http://localhost:3000'
       }
     ]
