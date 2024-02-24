@@ -1,8 +1,8 @@
 const db = require('../models/dbModels.js');
 
-const dbController = {};
+const testController = {};
 
-dbController.testCreate = (req, res, next) => {
+testController.testCreate = (req, res, next) => {
   const query =
     'CREATE TABLE test_table (id SERIAL PRIMARY KEY, test_column1 VARCHAR(255), test_column2 INT, test_column3 BOOLEAN);';
   console.log('dbController.test');
@@ -16,10 +16,10 @@ dbController.testCreate = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-dbController.postTranscribeData = (req, res, next) => {
+testController.testInsert = (req, res, next) => {
   const query =
-    'INSERT INTO words (word, start, end, confidence, punctuated_word) VALUES ($1, $2, $3, $4, $5);';
-  const values = ['i', '7.2599998', '7.46', '0.8708194', 'I'];
+    'INSERT INTO test_table (test_column1, test_column2, test_column3) VALUES ($1, $2, $3);';
+  const values = ['hello', 100, true];
 
   return db
     .query(query, values)
@@ -30,8 +30,8 @@ dbController.postTranscribeData = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-dbController.getSessionData = (req, res, next) => {
-  const query = 'SELECT * FROM words;';
+testController.testSelect = (req, res, next) => {
+  const query = 'SELECT * FROM test_table;';
 
   return db
     .query(query)
@@ -43,4 +43,4 @@ dbController.getSessionData = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-module.exports = dbController;
+module.exports = testController;

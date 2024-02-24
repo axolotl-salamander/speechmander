@@ -1,22 +1,19 @@
 const express = require('express');
 
-const dbController = require('../controllers/dbController');
+const testController = require('../controllers/testController');
 
 const testRouter = express.Router();
 
-testRouter.get('/create', dbController.testCreate, (req, res) => {
+testRouter.get('/create', testController.testCreate, (req, res) => {
   res.status(200).send('test table created!');
-}
-);  
+});
 
-testRouter.get('/insert', dbController.testInsert, (req, res) => {
+testRouter.get('/insert', testController.testInsert, (req, res) => {
   res.status(200).send('test data inserted!');
-}   
-);
+});
 
-testRouter.get('/select', dbController.testSelect, (req, res) => {
+testRouter.get('/select', testController.testSelect, (req, res) => {
   res.status(200).send(res.locals.test);
-}   
-);
+});
 
 module.exports = testRouter;
