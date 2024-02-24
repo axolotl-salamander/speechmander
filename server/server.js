@@ -15,14 +15,11 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
-
-
 app.get('/', (req, res) => {
   res.status(200).send('hello world!');
 });
 
 app.get('/transcribe', async (req, res) => {
-
   try {
     const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
       fs.readFileSync(testAudio),
@@ -56,7 +53,6 @@ app.use((err, req, res, next) => {
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
-
 
 /**
  * start server
