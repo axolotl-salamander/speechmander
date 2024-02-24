@@ -3,26 +3,24 @@ const path = require('path');
 const fs = require('fs');
 const { createClient } = require('@deepgram/sdk');
 
-const dbController = require('./controllers/dbController');
+const apiRouter = require('./routes/apiRouter');
 
 const app = express();
+const PORT = 3000;
 
 const deepgram = createClient('d3b121ea821296238a901f7eddf6733cfe477c92');
 
-const testAudio = path.join(__dirname, '../client/assets/audio-test.mp3');
+const testAudio = path.join(__dirname, '../client/assets/bad-speech.mp3');
 
-const testRouter = require('./routes/testRouter');
-const apiRouter = require('./routes/apiRouter');
-const PORT = 3000;
+//TEST
+// const testRouter = require('./routes/testRouter');
+// app.use('/test', testRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//TEST
-// app.use('/test', testRouter);
-
 app.get('/', (req, res) => {
-  res.status(200).send('hello world!');
+  return res.sendFile(path.resolve(__dirname, '../index.html'));
 });
 
 app.get('/transcribe', async (req, res) => {
@@ -33,6 +31,9 @@ app.get('/transcribe', async (req, res) => {
         model: 'nova-2',
         smart_format: true,
         language: 'en-US',
+        filler_words: true,
+        puctuate: 'verbatim',
+        // sentiment: 'positive',
       }
     );
     return res.status(200).send(result.results.channels[0].alternatives);

@@ -16,7 +16,7 @@ router.get('/', dbController.getSessionData, (req, res) => {
 router.post(
   '/',
   apiController.getTranscribeData,
-  //   dbController.postTranscribeData,
+  dbController.postTranscribeData,
   (req, res) => {
     return res.status(200).json('DATA');
   }
