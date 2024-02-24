@@ -1,8 +1,12 @@
-import React from 'react';
+import React from "react";
+import MainContainer from "./containers/0MainContainer";
 
 const App = () => {
   return (
-    <div>Hello world!</div>
+    <div>
+      <div>Hello world!</div>
+      <div>{MainContainer}</div>
+    </div>
   );
 };
 
