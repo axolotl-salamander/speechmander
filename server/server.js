@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const apiRouter = require('./routes/api');
+const apiRouter = require('./routes/apiRouter');
 
 const PORT = 3000;
 
@@ -17,10 +17,8 @@ app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
 );
 
-/**
- * express error handler
- * @see https://expressjs.com/en/guide/error-handling.html#writing-error-handlers
- */
+//  gloabal error handler
+
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -32,9 +30,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-/**
- * start server
- */
+// start server
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
