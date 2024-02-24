@@ -6,11 +6,12 @@ import React from "react";
 
 const WelcomeContainer = () => {
 return (
-    <div>
-        {/* // <h1>: welcome
-// <div>: some text
-// <div>: start button */}
-    </div>
+    <p>Welcome container works!</p>
+//     <div>
+//         {/* // <h1>: welcome
+// // <div>: some text
+// // <div>: start button */}
+//     </div>
 )
 }
 

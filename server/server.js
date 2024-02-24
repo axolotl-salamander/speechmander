@@ -1,22 +1,44 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
+
 const dbController = require('./controllers/dbController');
 const app = express();
-const testRouter = require('./routes/testRouter');
+
+const { createClient } = require('@deepgram/sdk');
+const deepgram = createClient('d3b121ea821296238a901f7eddf6733cfe477c92');
+
+const testAudio = path.join(__dirname, '../client/assets/audio-test.mp3');
+
 const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/test', testRouter);
-
 app.get('/', (req, res) => {
   res.status(200).send('hello world!');
 });
 
+app.get('/transcribe', async (req, res) => {
+  try {
+    const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
+      fs.readFileSync(testAudio),
+      {
+        model: 'nova-2',
+        smart_format: true,
+        language: 'en-US'
+      }
+    );   
+    return res.status(200).send(result.results.channels[0].alternatives);
+  } catch (err) {
+    console.error('Error: ', err);
+    res.status(500).send('Error transcribing audio.');
+  }
+});
+
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) =>
-  res.status(404).send("This is not the page you're looking for...")
+  res.status(404).send('This is not the page you\'re looking for...')
 );
 
 /**

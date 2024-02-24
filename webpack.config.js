@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: path.join(__dirname, './client/index.js'),
@@ -8,7 +9,8 @@ module.exports = {
     filename: 'bundle.js',
   },
   //   mode: process.env.NODE_ENV,
-  mode: 'development',
+  mode: 'development', 
+  plugins: [new HtmlWebpackPlugin({title: 'development', template: './index.html'})],
   devServer: {
     host: 'localhost',
     port: 8080,
@@ -18,7 +20,7 @@ module.exports = {
     },
     proxy: [
       {
-        context: ['/api', '/test'],
+        context: ['/transcribe', '/test'],
         target: 'http://localhost:3000',
       },
     ],
@@ -34,6 +36,10 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
+      },
+      {
+        test: /\.mp3$/,
+        loader: 'file-loader'
       },
     ],
   },

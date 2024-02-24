@@ -1,10 +1,18 @@
-import { StoreCreator } from 'redux';
-import { composeWithDevTools } from '@reduxjs/toolkit/dist/devtoolsExtension';
-import reducers from './reducers';
+import { configureStore } from '@reduxjs/toolkit';
+// import * as StoreCreator from 'redux';
+// import { composeWithDevTools } from '@reduxjs/toolkit/dist/devtoolsExtension';
+import audioSlice from './reducers.js';
 
-const store = StoreCreator(
-    reducers,
-    composeWithDevTools
-)
+// export default store = configureStore({
+//   reducer: {
+//     audioSlice
+//   }
+// });
+
+const store = configureStore({
+  reducer: {
+    audioSlice
+  }
+});
 
 export default store;
