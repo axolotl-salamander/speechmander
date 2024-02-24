@@ -1,0 +1,168 @@
+//test getRequest from Jimmy that works
+
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer 1loRoOe9aayKsjqIWdfCrrac6XaFfzNemRIs/PHNjsQ=");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "responseType": "AsyncResultFull",
+  "debug": {
+    "message": "... some information useful to troubleshoot the error ..."
+  },
+  "progress": {
+    "audioDuration": 1450,
+    "audioEndTime": 1560,
+    "audioStartTime": 110,
+    "callback": {
+      "code": 200,
+      "time": 1677173892602,
+      "url": "string"
+    },
+    "clockEndTime": 1557179997,
+    "clockStartTime": 1557179297,
+    "message": "... some optional msg about progress ...",
+    "percentCompleted": 75.3,
+    "phase": "ACCEPTED",
+    "xRealTime": 0.482758
+  },
+  "session": {
+    "asyncMode": "REAL-TIME",
+    "metadata": [
+      {
+        "name": "param1",
+        "value": "value of param 1"
+      }
+    ],
+    "sessionId": "dee11d4e-63c6-4d90-983c-5c9f1e79e96c"
+  },
+  "audio": {
+    "channel": "left",
+    "source": {
+      "dataStore": {
+        "uuid": "9f5dgi4-js7bl-ah981g6-hhsdu622"
+      }
+    }
+  },
+  "audioCallback": {
+    "authConf": "string",
+    "code": 200,
+    "method": "POST",
+    "multipartFormData": [
+      {
+        "contentType": "string",
+        "name": "string",
+        "value": "string"
+      }
+    ],
+    "response": "string",
+    "time": 1677173892602,
+    "uri": "http://example.com"
+  },
+  "redactions": [
+    {
+      "confidence": 1,
+      "duration": 0,
+      "mask": "string",
+      "options": "string",
+      "originalValue": "string",
+      "pattern": "string",
+      "redactedValue": "string",
+      "spk": 1,
+      "start": 0,
+      "type": "ner"
+    }
+  ],
+  "result": {
+    "captions": [
+      {
+        "duration": 0,
+        "spk": 2,
+        "text": "the man said",
+        "time": 0
+      }
+    ],
+    "final": true,
+    "language": "ar",
+    "lastEvent": "START-OF-INPUT",
+    "message": "string",
+    "numberSpeakers": 0,
+    "rmsData": "string",
+    "segments": [
+      {
+        "alternatives": [
+          {
+            "confidence": 0.8355,
+            "text": "Hi there"
+          }
+        ],
+        "duration": 0,
+        "spk": 1,
+        "time": 0
+      }
+    ],
+    "sentences": [
+      {
+        "alternatives": [
+          {
+            "confidence": 0.8355,
+            "text": "Hi there"
+          }
+        ],
+        "duration": 0,
+        "spk": 1,
+        "time": 0
+      }
+    ],
+    "speakers": [
+      {
+        "age": "young-adult",
+        "gender": "male",
+        "name": "john doe",
+        "spk": 0
+      }
+    ],
+    "status": "INPROGRESS",
+    "transcript": "the quick brown fox jumps over the lazy dog",
+    "ttml": "https:/api.ascalon.ai/v1/asr/transcribe/captions/ttml/3b241101-e2bb-4255-8caf-4136c566a962",
+    "vadData": "string",
+    "wordTree": [
+      {
+        "confidence": 0.765,
+        "spk": 2,
+        "utterance": "banana",
+        "duration": 60,
+        "start": 70,
+        "id": 7,
+        "parent": 5
+      }
+    ],
+    "words": [
+      {
+        "confidence": 0.765,
+        "spk": 2,
+        "utterance": "banana",
+        "alternatives": [
+          {
+            "confidence": 0.765,
+            "spk": 2,
+            "utterance": "banana"
+          }
+        ],
+        "duration": 60,
+        "start": 70
+      }
+    ]
+  }
+});
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://api.voicegain.ai/v1/asr/transcribe", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
