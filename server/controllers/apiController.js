@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 const apiController = {};
 
 // calling speech-to-text api with new recording

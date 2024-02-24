@@ -2,12 +2,15 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+const testRouter = require('./routes/testRouter');
 const apiRouter = require('./routes/apiRouter');
-
 const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//TEST
+// app.use('/test', testRouter);
 
 // route to all request from client database
 app.use('/api', apiRouter);
@@ -30,7 +33,9 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-// start server
+/**
+ * start server
+ */
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
