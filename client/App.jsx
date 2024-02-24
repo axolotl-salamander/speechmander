@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Record from './components/Record.jsx';
 
 const App = () => {
   return (
-    <div>Hello world!</div>
+    <>
+      <div>Hello world!</div>
+      <Record /></>
   );
 };
 
