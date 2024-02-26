@@ -50,5 +50,57 @@ h1 {
     height: 50px;
 }
 
+/* play container */
 
+.play-container {
+display: flex;
+border: solid blue;
+padding: 20%;
+margin: 3% 30%;
+flex-direction: column;
+align-items: center;
+justify-content: start;
+}
 
+.record-container {
+    display: flex;
+    border: solid red;
+    padding: 10%;
+    margin: 10px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.transcript-container {
+    display: flex;
+    border: solid purple;
+    padding: 20%;
+    margin: 3% 30%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+buttons {
+display: flex;
+justify-content: space-around;
+width: 100%;
+margin-top: 20px;
+}
+
+.record-btn {
+background-color: blue;
+border-radius: 4px;
+padding: 10px 20px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+stop-record-btn {
+    background-color: blue;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
