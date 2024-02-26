@@ -31,16 +31,29 @@ dbController.postTranscribeData = (req, res, next) => {
 };
 
 dbController.getSessionData = (req, res, next) => {
-  const query = 'SELECT * FROM words;';
+  const wordsQuery =
+    'SELECT id, word, start_time, end_time, transcript_id FROM words;';
+  const transcriptQuery = 'SELECT id, transcript, duration FROM transcript;';
 
-  return db
-    .query(query)
+  //Querying words table
+  db.query(wordsQuery)
     .then((data) => {
-      console.log(data);
-      res.locals.test = data.rows;
-      return next();
+      res.locals.words = data.rows;
+      // Querying transcript table
+      db.query(transcriptQuery)
+        .then((data) => {
+          res.locals.transcript = data.rows;
+          return next();
+        })
+        .catch((err) => next(err));
     })
-    .catch((err) => next(err));
+    .catch((err) =>
+      next({
+        log: 'dbController.getSessionData error: ' + err,
+        status: 500,
+        message: { err: 'An error occurred while fetching data from DB' },
+      })
+    );
 };
 
 module.exports = dbController;

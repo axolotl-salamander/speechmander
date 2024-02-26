@@ -2,14 +2,20 @@ const express = require('express');
 
 const apiController = require('../controllers/apiController');
 const dbController = require('../controllers/dbController');
+const dataController = require('../controllers/dataController');
 
 const router = express.Router();
 
 // handle GET request to /api/
 // this request will fetch previouse sessions from database and send out manipulated data per client's needs
-router.get('/', dbController.getSessionData, (req, res) => {
-  return res.status(200).json(res.locals.test);
-});
+router.get(
+  '/',
+  dbController.getSessionData,
+  dataController.analyzeData,
+  (req, res) => {
+    return res.status(200).json(res.locals);
+  }
+);
 
 // handel POST request to /api/
 // this request should call speech-to-text api with new recording and save the returned data to the database
