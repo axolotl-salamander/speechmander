@@ -1,5 +1,8 @@
 const express = require('express');
 
+// const multer = require('multer');
+// const upload = multer({ dest: '/uploads/'});
+
 const apiController = require('../controllers/apiController');
 const dbController = require('../controllers/dbController');
 
@@ -11,9 +14,10 @@ const router = express.Router();
 //   return res.status(200).json(res.locals.test);
 // });
 
-// handel POST request to /api/
+// handle POST request to /api/
 // this request should call speech-to-text api with new recording and save the returned data to the database
-router.get(
+
+router.post(
   '/',
   apiController.analyzeAudioFile,
   dbController.postTranscript,

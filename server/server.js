@@ -1,4 +1,7 @@
 const express = require('express');
+const path = require('path');
+const multer = require('multer');
+const upload = multer({ dest: path.resolve(__dirname, '/uploads') });
 
 const app = express();
 
@@ -17,6 +20,16 @@ app.use('/api', apiRouter);
 
 app.get('/', (req, res) => {
   res.status(200).send('hello world!');
+});
+
+app.post('/upload', upload.single('audioFile'), (req, res) => {
+  console.log('\n\nupload endpoint hit!\n\n');
+  try {
+    console.log('logging file to be uploaded: ', req.file);
+    res.status(200).send({ message: 'File uploaded successfully!'});
+  } catch(err) {
+    res.send(500).send({ error: 'Upload failed'});
+  }
 });
 
 // catch-all route handler for any requests to an unknown route
