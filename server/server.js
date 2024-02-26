@@ -1,49 +1,23 @@
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const { createClient } = require('@deepgram/sdk');
-
-const apiRouter = require('./routes/apiRouter');
 
 const app = express();
-const PORT = 3000;
 
-const deepgram = createClient('d3b121ea821296238a901f7eddf6733cfe477c92');
-
-const testAudio = path.join(__dirname, '../client/assets/bad-speech.mp3');
-
-//TEST
 // const testRouter = require('./routes/testRouter');
-// app.use('/test', testRouter);
+const apiRouter = require('./routes/apiRouter');
+const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  return res.sendFile(path.resolve(__dirname, '../index.html'));
-});
+//TEST
+// app.use('/test', testRouter);
 
-app.get('/transcribe', async (req, res) => {
-  try {
-    const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
-      fs.readFileSync(testAudio),
-      {
-        model: 'nova-2',
-        smart_format: true,
-        language: 'en-US',
-        filler_words: true,
-        puctuate: 'verbatim',
-        // sentiment: 'positive',
-      }
-    );   
-    return res.status(200).send(result);
-  } catch (err) {
-    console.error('Error: ', err);
-    res.status(500).send('Error transcribing audio.');
-  }
-});
 // route to all request from client database
 app.use('/api', apiRouter);
+
+app.get('/', (req, res) => {
+  res.status(200).send('hello world!');
+});
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) =>
