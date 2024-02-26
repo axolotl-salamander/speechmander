@@ -29,10 +29,10 @@ const DataContainer = () => {
   return (
     <>
       <CurrentSession currSession={currSession} />
-      <SessionTrends wordCountTrends={wordCountTrends} />
-      <SessionTrends wordPerSec={wordPerSec} />
-      <SessionTrends avgPauseDur={avgPauseDur} />
-      <SessionTrends totalPauses={totalPauses} />
+      <SessionTrends dataArr={wordCountTrends} title="wordCountTrends" />
+      <SessionTrends dataArr={wordPerSec} title="wordPerSec" />
+      <SessionTrends dataArr={avgPauseDur} title="avgPauseDur" />
+      <SessionTrends dataArr={totalPauses} title="totalPauses" />
       <ButtonComponent to="/record" btnText="Record Again!" />
     </>
   );
