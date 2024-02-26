@@ -129,7 +129,7 @@ const Record = () => {
         }
       </div>
       <Link to="/results">
-        <button onClick={handleApi}>Stop</button>
+        <button onClick={handleApi}>Show Results!</button>
       </Link>
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { Line } from 'react-chartjs-2';
 
-const SessionTrends = ({ dataArr, name }) => {
+const SessionTrends = ({ dataArr, title }) => {
   // const data = {
   //   labels: ['session1', 'session2', 'session3'],
   //   datasets: [
@@ -23,7 +23,19 @@ const SessionTrends = ({ dataArr, name }) => {
   //   },
   // };
 
-  return <div>{/* <Line data={data} options={options} /> */}</div>;
+  return (
+    <div>
+      {dataArr.length !== 0 ? (
+        <>
+          <p>
+            {title}: {dataArr}
+          </p>
+        </>
+      ) : (
+        <p>{title}: Data Loading...</p>
+      )}
+    </div>
+  );
 };
 
 export default SessionTrends;
