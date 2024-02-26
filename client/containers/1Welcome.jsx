@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ButtonComponent from '../components/ButtonComponent.jsx';
 import Signup from '../components/signup.jsx';
-
+import Login from '../components/login.jsx';
 
 const WelcomeContainer = () => {
   const activeState = useSelector((state) => state.audio.render);
@@ -11,6 +11,9 @@ const WelcomeContainer = () => {
   return (
     <>
     <div>
+      <Login/>
+      </div>
+      <div>
       <Signup/>
       </div>
       <div className="nav-container">
