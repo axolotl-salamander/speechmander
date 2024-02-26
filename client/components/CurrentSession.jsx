@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CurrentSession = () => {
+const CurrentSession = ({ currSession }) => {
   return (
     <div>
       <h1>Current Session</h1>

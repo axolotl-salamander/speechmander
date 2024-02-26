@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function Login() {
   const [verifyData, setVerifyData] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     //send data to server
-    fetch("/user/verify", {
-      method: "POST",
+    fetch('/user/verify', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(verifyData),
     })
@@ -20,10 +20,10 @@ function Login() {
         return response.json();
       })
       .then((data) => {
-        console.log("Success:", data);
+        console.log('Success:', data);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error('Error:', error);
       });
   };
 
@@ -35,7 +35,7 @@ function Login() {
   };
 
   return (
-    <form id = "loginForm" onSubmit={handleSubmit}>
+    <form id="loginForm" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
         <input
