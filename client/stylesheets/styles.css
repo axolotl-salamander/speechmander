@@ -7,5 +7,16 @@
 /* WELCOME PAGE */
 .nav-container, .hero-container {
     padding: 25px;
+    margin: 0 10%;
+    position: absolute;
+}
+
+.hero-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 90%;
 }
 

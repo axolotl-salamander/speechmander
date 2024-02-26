@@ -8,7 +8,6 @@ const Record = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [finishedRecording, setFinishedRecording] = useState(false);
   const [transcript, setTranscript] = useState('');
-  // const [blobUrl, setBlobUrl] = useState('');
   const [isBlocked, setIsBlocked] = useState(true);
   const [mp3File, setMp3File] = useState();
   
@@ -22,8 +21,6 @@ const Record = () => {
     });
   }, []);
 
-  // const recognitionRef = useRef(null);
-
   const startRecording = () => {
     setIsRecording(true);
     if (isBlocked) {
@@ -35,25 +32,7 @@ const Record = () => {
         })
         .catch(err => console.log('there was an error: ', err));
     }
-    // recognitionRef.current = new window.webkitSpeechRecognition();
-    // recognitionRef.current.continuous = true;
-    // recognitionRef.current.interimResult = true;
-
-    // recognitionRef.current.onResult = event => {
-    //   const { transcript } = event.results[event.results.length - 1][0];
-    //   setTranscript(transcript);
-    // };
-
-    // recognitionRef.current.start();
   };
-
-  // useEffect(() => {
-  //   return () => {
-  //     if (recognitionRef.current) {
-  //       recognitionRef.current.stop;
-  //     }
-  //   };
-  // }, []);
 
   const stopRecording = () => {
     Mp3Recorder.stop().getMp3()
