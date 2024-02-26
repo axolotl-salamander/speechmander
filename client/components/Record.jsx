@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import testAudio from '../assets/audio-test.mp3';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateSessionData } from '../userSlice.js';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -81,7 +83,7 @@ const Record = () => {
 
   ////////////////////////////////////
   //Sonia's API call to server
-  const dispatch
+  const dispatch = useDispatch();
 
   const handleApi = () => {
     console.log('handleApi called');
@@ -126,9 +128,9 @@ const Record = () => {
           </div>
         }
       </div>
-      {/* <Link to="/results">
+      <Link to="/results">
         <button onClick={handleApi}>Stop</button>
-      </Link> */}
+      </Link>
     </>
   );
 };
