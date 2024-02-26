@@ -14,7 +14,6 @@ const PlayContainer = () => {
       </div>
       <div className="play-container">
         <div className="record-outer-container">
-          <h2>Ready to start recording?</h2>
           <Record />
         </div>
       </div>
