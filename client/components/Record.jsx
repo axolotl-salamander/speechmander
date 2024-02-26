@@ -2,46 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import testAudio from '../assets/audio-test.mp3';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { updateSessionData } from '../userSlice.js';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
 const Record = () => {
   const [isRecording, setIsRecording] = useState(false);
-  const [finishedRecording, setFinishedRecording] = useState(false);
-  const [transcript, setTranscript] = useState('');
+  // const [transcript, setTranscript] = useState('');
   const [isBlocked, setIsBlocked] = useState(true);
   const [mp3File, setMp3File] = useState();
 
-  ////////////////////////////////////
-  //Sonia's API call to server
-  const dispatch = useDispatch();
-
-  const handleApi = () => {
-    console.log('handleApi called');
-
-    fetch('/api')
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(updateSessionData(data));
-        console.log('datafromDB: ', data);
-      })
-      .catch((err) => console.error('Error: ', err));
-  };
-  //////////////////////////////////////
   useEffect(() => {
-    navigator.getUserMedia(
-      { audio: true },
-      () => {
-        console.log('audio permission granted!');
-        setIsBlocked(false);
-      },
-      () => {
-        console.log('audio permission denied');
-        setIsBlocked(true);
-      }
-    );
     navigator.getUserMedia(
       { audio: true },
       () => {
@@ -65,19 +35,15 @@ const Record = () => {
           console.log('currently recording...');
         })
         .catch((err) => console.log('there was an error: ', err));
-    
     }
   };
 
   const stopRecording = () => {
     Mp3Recorder.stop()
       .getMp3()
-    Mp3Recorder.stop()
-      .getMp3()
       .then(([buffer, blob]) => {
         const file = new File(buffer, 'new-speech-recording.mp3', {
           type: blob.type,
-          lastModified: Date.now(),
           lastModified: Date.now(),
         });
 
@@ -90,12 +56,12 @@ const Record = () => {
         setTimeout(() => {
           player.play();
         }, 1000);
-        setFinishedRecording(true);
+
+        // return setFinishedRecording(true);
       })
       .catch((err) =>
         console.log('There was an error retreiving recorded file.')
       );
-     
   };
 
   const handleToggleRecording = () => {
@@ -111,143 +77,61 @@ const Record = () => {
       .then((response) => response.json())
       .then((data) => console.log('Transcript: ', data))
       .catch((err) => console.error('Error: ', err));
-    fetch('/api')
-      .then((response) => response.json())
-      .then((data) => console.log('Transcript: ', data))
-      .catch((err) => console.error('Error: ', err));
   };
 
+  ////////////////////////////////////
+  //Sonia's API call to server
+  const dispatch
+
+  const handleApi = () => {
+    console.log('handleApi called');
+
+    fetch('/api')
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(updateSessionData(data));
+        console.log('datafromDB: ', data);
+      })
+      .catch((err) => console.error('Error: ', err));
+  };
+  ////////////////////////////////////
 
   return (
     <>
-      <div></div>
-      {(isRecording || transcript) && (
-        <div className="record-container">
-          <div>
-            <p>{finishedRecording ? 'Recorded' : 'Recording'}</p>
-            <p>
-              {finishedRecording
-                ? 'Analyzing your speech'
-                : 'Start speaking...'}
-            </p>
-      {(isRecording || transcript) && (
-        <div className="record-container">
-          <div>
-            <p>{finishedRecording ? 'Recorded' : 'Recording'}</p>
-            <p>
-              {finishedRecording
-                ? 'Analyzing your speech'
-                : 'Start speaking...'}
-            </p>
-          </div>
-        </div>
-      )}
-        </div>
-      )}
-
-      {transcript && (
-        <div className="transcript-container">
-          <p>{transcript}</p>
-        </div>
-      )}
-      {transcript && (
-        <div className="transcript-container">
-          <p>{transcript}</p>
-        </div>
-      )}
-
-      {isRecording && (
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="100"
-            height="100"
-            viewBox="0 0 21 21"
-          >
-            <g fill="none" stroke="currentColor">
-              <circle cx="10.5" cy="10.5" r="5" />
-              <circle cx="10.5" cy="10.5" r="3" fill="currentColor" />
-            </g>
-          </svg>
-        </div>
-      )}
-      {isRecording && (
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="100"
-            height="100"
-            viewBox="0 0 21 21"
-          >
-            <g fill="none" stroke="currentColor">
-              <circle cx="10.5" cy="10.5" r="5" />
-              <circle cx="10.5" cy="10.5" r="3" fill="currentColor" />
-            </g>
-          </svg>
-        </div>
-      )}
-
-      {!isRecording && mp3File && (
-        <audio controls src="new-speech-recording.mp3"></audio>
-      )}
-      {!isRecording && mp3File && (
-        <audio controls src="new-speech-recording.mp3"></audio>
-      )}
-
       <div className="buttons">
-        {!isRecording ? (
-          <div onClick={handleToggleRecording} className="record-btn">
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
-        {!isRecording ? (
-          <div onClick={handleToggleRecording} className="record-btn">
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
-                <path fill="currentColor" stroke="currentColor" d="M1.436 12.33a1.14 1.14 0 0 0 .63 1a1.24 1.24 0 0 0 1.22 0l8.65-5.35a1.11 1.11 0 0 0 0-2L3.286.67a1.24 1.24 0 0 0-1.22 0a1.14 1.14 0 0 0-.63 1z"/>
-              </svg> */}
-            I'm Ready
-          </div>
-        ) : (
-          <button onClick={handleToggleRecording} className="stop-record-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="50"
-              viewBox="0 0 14 14"
+        {
+          <div className="currently-recording-container">
+            <h3>
+              {!isRecording ? 'Ready to start recording?' : 'Recording...'}
+            </h3>
+            <div
+              onClick={handleToggleRecording}
+              className={
+                !isRecording ? 'record-btn' : 'record-btn pulse-animation'
+              }
             >
-              <path
-                fill="currentColor"
-                stroke="currentColor"
-                d="M1.5 0A1.5 1.5 0 0 0 0 1.5v11A1.5 1.5 0 0 0 1.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 12.5 0z"
-              />
-            </svg>
-          </button>
-        )}
-              </svg> */}
-            I'm Ready
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="200"
+                height="200"
+                viewBox="0 0 26 26"
+              >
+                <path
+                  fill="currentColor"
+                  d="M13 6.188a6.812 6.812 0 1 0 0 13.625a6.812 6.812 0 1 0 0-13.625z"
+                />
+              </svg>
+              <p>{!isRecording ? "I'm Ready" : 'Stop'}</p>
+            </div>
           </div>
-        ) : (
-          <button onClick={handleToggleRecording} className="stop-record-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="50"
-              viewBox="0 0 14 14"
-            >
-              <path
-                fill="currentColor"
-                stroke="currentColor"
-                d="M1.5 0A1.5 1.5 0 0 0 0 1.5v11A1.5 1.5 0 0 0 1.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 12.5 0z"
-              />
-            </svg>
-          </button>
-        )}
+        }
       </div>
-      <Link to="/results">
+      {/* <Link to="/results">
         <button onClick={handleApi}>Stop</button>
-      </Link>
+      </Link> */}
     </>
   );
 };
 <audio></audio>;
 
 export default Record;
-
