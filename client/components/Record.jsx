@@ -37,8 +37,6 @@ const Record = () => {
   const stopRecording = () => {
     Mp3Recorder.stop().getMp3()
       .then(([buffer, blob]) => {
-        // const blobUri = URL.createObjectURL(blob);
-        // setBlobUrl(blobUri);
         const file = new File(buffer, 'new-speech-recording.mp3', {
           type: blob.type,
           lastModified: Date.now()
@@ -54,12 +52,9 @@ const Record = () => {
           player.play();
         }, 1000);
         setFinishedRecording(true);
+
       })
       .catch(err => console.log('There was an error retreiving recorded file.'));
-    // if (recognitionRef.current) {
-    //   recognitionRef.current.stop();
-    //   setFinishedRecording(true);
-    // }
   };
 
   const handleToggleRecording = () => {
@@ -71,15 +66,7 @@ const Record = () => {
   const transcribeAudio = async (audio) => {
     const audioFile = testAudio;
 
-    fetch('/api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: {
-        audio: audioFile
-      },
-    })
+    fetch('/api')
       .then(response => response.json())
       .then(data => console.log('Transcript: ', data))
       .catch(err => console.error('Error: ', err));
@@ -128,11 +115,12 @@ const Record = () => {
       <div className="buttons">
         {
           !isRecording
-            ? <button onClick={handleToggleRecording} className='record-btn'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
+            ? <div onClick={handleToggleRecording} className='record-btn'>
+              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
                 <path fill="currentColor" stroke="currentColor" d="M1.436 12.33a1.14 1.14 0 0 0 .63 1a1.24 1.24 0 0 0 1.22 0l8.65-5.35a1.11 1.11 0 0 0 0-2L3.286.67a1.24 1.24 0 0 0-1.22 0a1.14 1.14 0 0 0-.63 1z"/>
-              </svg>
-            </button>
+              </svg> */}
+              I'm Ready
+            </div>
             : <button onClick={handleToggleRecording} className='stop-record-btn'>
               <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 14 14">
                 <path fill="currentColor" stroke="currentColor" d="M1.5 0A1.5 1.5 0 0 0 0 1.5v11A1.5 1.5 0 0 0 1.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 12.5 0z"/>
