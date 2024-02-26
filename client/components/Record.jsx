@@ -7,8 +7,7 @@ const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
 const Record = () => {
   const [isRecording, setIsRecording] = useState(false);
-  const [finishedRecording, setFinishedRecording] = useState(false);
-  const [transcript, setTranscript] = useState('');
+  // const [transcript, setTranscript] = useState('');
   const [isBlocked, setIsBlocked] = useState(true);
   const [mp3File, setMp3File] = useState();
 
@@ -58,6 +57,8 @@ const Record = () => {
           player.play();
         }, 1000);
         setFinishedRecording(true);
+
+        // return setFinishedRecording(true);
       })
       .catch((err) =>
         console.log('There was an error retreiving recorded file.')
@@ -94,6 +95,15 @@ const Record = () => {
           </div>
         </div>
       )}
+      {
+        // (isRecording) && (
+        //   <div className="record-container">
+        //     <div>
+        //       <p>{isRecording ? 'Recording. Start speaking...' : 'Recorded'}</p>
+        //     </div>
+        //   </div>
+        // )
+      }
 
       {transcript && (
         <div className="transcript-container">
@@ -116,10 +126,22 @@ const Record = () => {
           </svg>
         </div>
       )}
+      {/* {
+        transcript && (
+          <div className="transcript-container">
+            <p>{transcript}</p>
+          </div>
+        )
+      } */}
 
       {!isRecording && mp3File && (
         <audio controls src="new-speech-recording.mp3"></audio>
       )}
+      {/* {
+        (!isRecording && mp3File) && (
+          <audio controls src='new-speech-recording.mp3'></audio>
+        )
+      } */}
 
       <div className="buttons">
         {!isRecording ? (
@@ -145,6 +167,46 @@ const Record = () => {
             </svg>
           </button>
         )}
+        {
+          <div className="currently-recording-container">
+            <h3>
+              {!isRecording ? 'Ready to start recording?' : 'Recording...'}
+            </h3>
+            <div
+              onClick={handleToggleRecording}
+              className={
+                !isRecording ? 'record-btn' : 'record-btn pulse-animation'
+              }
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="200"
+                height="200"
+                viewBox="0 0 26 26"
+              >
+                <path
+                  fill="currentColor"
+                  d="M13 6.188a6.812 6.812 0 1 0 0 13.625a6.812 6.812 0 1 0 0-13.625z"
+                />
+              </svg>
+              <p>{!isRecording ? "I'm Ready" : 'Stop'}</p>
+            </div>
+          </div>
+          // !isRecording
+          // ? <div className="currently-recording-container">
+          //   <h3>{!isRecording ? 'Ready to start recording?' : 'Recording...'}</h3>
+          //   <div onClick={handleToggleRecording} className='record-btn'>
+          //     <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 26 26">
+          //       <path fill="currentColor" d="M13 6.188a6.812 6.812 0 1 0 0 13.625a6.812 6.812 0 1 0 0-13.625z"/>
+          //     </svg>
+          //     <p>I'm Ready</p>
+          //   </div>
+          // </div>
+          // : <div className="currently-recording-container">
+          //   <h3>Recording...</h3>
+          //   <button onClick={handleToggleRecording} className='stop-record-btn'>Stop</button>
+          // </div>
+        }
       </div>
       <Link to="/results">
         <button>Stop</button>
