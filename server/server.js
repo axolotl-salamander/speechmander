@@ -9,7 +9,7 @@ const app = express();
 
 const deepgram = createClient('d3b121ea821296238a901f7eddf6733cfe477c92');
 
-const testAudio = path.join(__dirname, '../client/assets/audio-test.mp3');
+// const testAudio = path.join(__dirname, '../client/assets/audio-test.mp3');
 
 const testRouter = require('./routes/testRouter');
 const apiRouter = require('./routes/apiRouter');
@@ -25,8 +25,10 @@ app.get('/', (req, res) => {
   res.status(200).send('hello world!');
 });
 
-app.get('/transcribe', async (req, res) => {
+app.post('/transcribe', async (req, res) => {
   try {
+    const audio = req.body.audio;
+    
     const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
       fs.readFileSync(testAudio),
       {

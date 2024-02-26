@@ -11,13 +11,7 @@ const MainContainer = () => {
 
   return (
     <>
-      {
-        (currentState === 1)
-          ? <WelcomeContainer />
-          : <PlayContainer />
-      }
-      {/* <PlayContainer />
-      <DataContainer /> */}
+      <WelcomeContainer />
     </>
   );
 };
