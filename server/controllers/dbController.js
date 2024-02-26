@@ -31,21 +31,23 @@ dbController.postTranscript = async (req, res, next) => {
     .then(() => next())
     .catch((err) => next(err));
 };
+
 dbController.getTranscriptId = (req, res, next) => {
   const query = 'SELECT id FROM transcript WHERE request_id = $1;';
   const values = [res.locals.request_id];
   db.query(query, values)
     .then((data) => {
       res.locals.transcriptId = data.rows[0].id;
-      console.log('transcriptId:', res.locals.transcriptId);
+      // console.log('transcriptId:', res.locals.transcriptId);
       return next();
     })
     .catch((err) => next(err));
 };
+
 dbController.insertWords = async (req, res, next) => {
   try {
     const words = res.locals.words;
-    console.log('words:', words);
+    // console.log('words:', words);
     for (const word of words) {
       await db.query(
         'INSERT INTO words (word, start_time, end_time, confidence, punctuated_word, transcript_id) VALUES ($1, $2, $3, $4, $5, $6);',
@@ -65,6 +67,35 @@ dbController.insertWords = async (req, res, next) => {
     next(err);
   }
 };
+
+dbController.insertAnalyzedData = (req, res, next) => {
+  const query =
+    'INSERT INTO analyzed_data (transcript_id, word_count, word_per_sec, avg_pause, total_pauses, words_with_pauses) VALUES ($1, $2, $3, $4, $5, $6);';
+  const values = [
+    res.locals.transcriptId,
+    res.locals.wordCount,
+    res.locals.wordPerSec,
+    res.locals.averagePauseDuration,
+    res.locals.totalPauses,
+    res.locals.wordsWithPauses,
+  ];
+  db.query(query, values)
+    .then((data) => {
+      console.log('insertWordCountWordPerSec data:' + data);
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: 'dbController.insertWordCountWordPerSec error: ' + err,
+        status: 500,
+        message: {
+          err: 'An error occurred while inserting word count and word per sec',
+        },
+      })
+    );
+};
+
+dbController.insertBottomThreeConfidenc = (req, res, next) => {};
 
 dbController.getSessionData = (req, res, next) => {
   const wordsQuery =

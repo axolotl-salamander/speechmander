@@ -20,8 +20,11 @@ router.get(
   dbController.postTranscript,
   dbController.getTranscriptId,
   dbController.insertWords,
+  dataController.wordCountConfidence,
+  dataController.analyzeFluency,
+  dbController.insertAnalyzedData,
   (req, res) => {
-    return res.status(200).json('DATA');
+    return res.status(200).json(res.locals);
   }
 );
 
