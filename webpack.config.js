@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, './client/index.js'),
@@ -9,8 +9,10 @@ module.exports = {
     filename: 'bundle.js',
   },
   //   mode: process.env.NODE_ENV,
-  mode: 'development', 
-  plugins: [new HtmlWebpackPlugin({title: 'development', template: './index.html'})],
+  mode: 'development',
+  plugins: [
+    new HtmlWebpackPlugin({ title: 'development', template: './index.html' }),
+  ],
   devServer: {
     historyApiFallback: true,
     host: 'localhost',
@@ -21,7 +23,7 @@ module.exports = {
     },
     proxy: [
       {
-        context: ['/transcribe', '/test'],
+        context: ['/api', '/test'],
         target: 'http://localhost:3000',
       },
     ],
@@ -40,7 +42,7 @@ module.exports = {
       },
       {
         test: /\.mp3$/,
-        loader: 'file-loader'
+        loader: 'file-loader',
       },
     ],
   },

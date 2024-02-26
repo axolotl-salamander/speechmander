@@ -1,17 +1,16 @@
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const { createClient } = require('@deepgram/sdk');
-
-const dbController = require('./controllers/dbController');
 
 const app = express();
 
+<<<<<<< HEAD
 const deepgram = createClient('d3b121ea821296238a901f7eddf6733cfe477c92');
 
 // const testAudio = path.join(__dirname, '../client/assets/audio-test.mp3');
 
 const testRouter = require('./routes/testRouter');
+=======
+// const testRouter = require('./routes/testRouter');
+>>>>>>> 70b595d20c37d8700773b06626550fa79d037bc1
 const apiRouter = require('./routes/apiRouter');
 const PORT = 3000;
 
@@ -21,10 +20,14 @@ app.use(express.urlencoded({ extended: true }));
 //TEST
 // app.use('/test', testRouter);
 
+// route to all request from client database
+app.use('/api', apiRouter);
+
 app.get('/', (req, res) => {
   res.status(200).send('hello world!');
 });
 
+<<<<<<< HEAD
 app.post('/transcribe', async (req, res) => {
   try {
     const audio = req.body.audio;
@@ -46,6 +49,8 @@ app.post('/transcribe', async (req, res) => {
 // route to all request from client database
 app.use('/api', apiRouter);
 
+=======
+>>>>>>> 70b595d20c37d8700773b06626550fa79d037bc1
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
