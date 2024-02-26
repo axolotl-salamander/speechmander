@@ -3,6 +3,7 @@ import ButtonComponent from '../components/ButtonComponent.jsx';
 import CurrentSession from '../components/CurrentSession.jsx';
 import SessionTrends from '../components/SessionTrends.jsx';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const DataContainer = () => {
   const { isLoggedIn, sessionData } = useSelector((state) => state.user);
@@ -29,11 +30,14 @@ const DataContainer = () => {
   return (
     <>
       <CurrentSession currSession={currSession} />
+      <h1>Session Trends</h1>
       <SessionTrends dataArr={wordCountTrends} title="wordCountTrends" />
       <SessionTrends dataArr={wordPerSec} title="wordPerSec" />
       <SessionTrends dataArr={avgPauseDur} title="avgPauseDur" />
       <SessionTrends dataArr={totalPauses} title="totalPauses" />
-      <ButtonComponent to="/record" btnText="Record Again!" />
+      <Link to="/record">
+        <button className="record-btn">Record Again!</button>
+      </Link>
     </>
   );
 };
