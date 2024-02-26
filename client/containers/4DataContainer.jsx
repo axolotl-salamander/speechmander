@@ -25,15 +25,14 @@ const DataContainer = () => {
   // useEffect(() => {
   //   fetch()
   // });
+
   return (
     <>
-      <CurrentSession />
-      <SessionTrends
-        wordCountTrends={wordCountTrends}
-        wordPerSec={wordPerSec}
-        avgPauseDur={avgPauseDur}
-        totalPauses={totalPauses}
-      />
+      <CurrentSession currSession={currSession} />
+      <SessionTrends wordCountTrends={wordCountTrends} />
+      <SessionTrends wordPerSec={wordPerSec} />
+      <SessionTrends avgPauseDur={avgPauseDur} />
+      <SessionTrends totalPauses={totalPauses} />
       <ButtonComponent to="/record" btnText="Record Again!" />
     </>
   );
