@@ -24,7 +24,14 @@ router.get(
   dataController.analyzeFluency,
   dbController.insertAnalyzedData,
   (req, res) => {
-    return res.status(200).json(res.locals);
+    return res.status(200).json({
+      wordCount: res.locals.wordCount,
+      wordPerSec: res.locals.wordPerSec,
+      averagePauseDuration: res.locals.averagePauseDuration,
+      totalPauses: res.locals.totalPauses,
+      wordsWithPauses: res.locals.wordsWithPauses,
+      transcripts: res.locals.transcript,
+    });
   }
 );
 
