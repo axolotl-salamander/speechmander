@@ -33,7 +33,7 @@ const WelcomeContainer = () => {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolor consequatur dolorem dicta, quod fugiat ullam quo maiores, est magni laborum vel soluta ipsum. Molestias, asperiores! Impedit cupiditate eum eius?</p>
         {/* <ButtonComponent to='/record' btnText='Start!' /> */}
         <div className="auth-btns">
-          <ButtonComponent to='/signup' btnText='Sign up?' />
+          <ButtonComponent to='/signup' btnText='Sign up' />
           <p>or</p>
           <ButtonComponent to='/login' btnText='Login' />
         </div>
