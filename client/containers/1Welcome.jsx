@@ -10,11 +10,11 @@ const WelcomeContainer = () => {
 
   return (
     <>
-    <div>
-      <Login/>
+      <div>
+        <Login/>
       </div>
       <div>
-      <Signup/>
+        <Signup/>
       </div>
       <div className="nav-container">
         <div className="logo">
