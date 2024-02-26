@@ -7,6 +7,7 @@ const app = express();
 
 // const testRouter = require('./routes/testRouter');
 const apiRouter = require('./routes/apiRouter');
+const userRouter = require('./routes/userRouter');
 const PORT = 3000;
 
 app.use(express.json());
@@ -17,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // route to all request from client database
 app.use('/api', apiRouter);
+
+app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
   res.status(200).send('hello world!');

@@ -78,5 +78,4 @@ dbController.getSessionData = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
-
 module.exports = dbController;
