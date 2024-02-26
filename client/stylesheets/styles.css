@@ -27,6 +27,14 @@ h1 {
 }
 
 /* WELCOME PAGE */
+
+.signupform {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
 .nav-container, .hero-container {
     padding: 25px;
     margin: 0 10%;

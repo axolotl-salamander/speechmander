@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ButtonComponent from '../components/ButtonComponent.jsx';
+import Signup from '../components/signup.jsx';
 
 
 const WelcomeContainer = () => {
@@ -9,6 +10,9 @@ const WelcomeContainer = () => {
 
   return (
     <>
+    <div>
+      <Signup/>
+      </div>
       <div className="nav-container">
         <div className="logo">
           <h3>Speechr</h3>
