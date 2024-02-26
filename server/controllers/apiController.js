@@ -15,7 +15,7 @@ apiController.getTranscribeData = (req, res, next) => {
 
 apiController.analyzeAudioFile = async (req, res, next) => {
   const audio = fs.readFileSync(
-    path.join(__dirname, '../../client/assets/audio-test.mp3')
+    path.join(__dirname, '../../client/assets/bad-speech.mp3')
   );
   //post transcribe data to database
   try {
@@ -25,6 +25,8 @@ apiController.analyzeAudioFile = async (req, res, next) => {
         model: 'nova-2',
         smart_format: true,
         language: 'en-US',
+        filler_words: true,
+        puctuate: 'verbatim',
       }
     );
     res.locals.transcript =

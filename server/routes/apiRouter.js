@@ -2,6 +2,7 @@ const express = require('express');
 
 const apiController = require('../controllers/apiController');
 const dbController = require('../controllers/dbController');
+const dataController = require('../controllers/dataController');
 
 const router = express.Router();
 
@@ -19,8 +20,11 @@ router.get(
   dbController.postTranscript,
   dbController.getTranscriptId,
   dbController.insertWords,
+  dataController.wordCountConfidence,
+  dataController.analyzeFluency,
+  dbController.insertAnalyzedData,
   (req, res) => {
-    return res.status(200).json('DATA');
+    return res.status(200).json(res.locals);
   }
 );
 
