@@ -16,18 +16,54 @@ dbController.testCreate = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-dbController.postTranscribeData = (req, res, next) => {
-  const query =
-    'INSERT INTO words (word, start, end, confidence, punctuated_word) VALUES ($1, $2, $3, $4, $5);';
-  const values = ['i', '7.2599998', '7.46', '0.8708194', 'I'];
+dbController.postTranscript = async (req, res, next) => {
+  const transcriptQuery =
+    'INSERT INTO transcript (transcript, duration, request_id, confidence) VALUES ($1, $2, $3, $4);';
+  const transcriptValues = [
+    res.locals.transcript,
+    res.locals.duration,
+    res.locals.request_id,
+    res.locals.confidence,
+  ];
 
-  return db
-    .query(query, values)
+  db.query(transcriptQuery, transcriptValues)
+    .then((data) => {})
+    .then(() => next())
+    .catch((err) => next(err));
+};
+dbController.getTranscriptId = (req, res, next) => {
+  const query = 'SELECT id FROM transcript WHERE request_id = $1;';
+  const values = [res.locals.request_id];
+  db.query(query, values)
     .then((data) => {
-      console.log(data);
+      res.locals.transcriptId = data.rows[0].id;
+      console.log('transcriptId:', res.locals.transcriptId);
       return next();
     })
     .catch((err) => next(err));
+};
+dbController.insertWords = async (req, res, next) => {
+  try {
+    const words = res.locals.words;
+    console.log('words:', words);
+    for (const word of words) {
+      await db.query(
+        'INSERT INTO words (word, start_time, end_time, confidence, punctuated_word, transcript_id) VALUES ($1, $2, $3, $4, $5, $6);',
+        [
+          word.word,
+          word.start,
+          word.end,
+          word.confidence,
+          word.punctuated_word,
+          res.locals.transcriptId,
+        ]
+      );
+    }
+
+    next();
+  } catch (err) {
+    next(err);
+  }
 };
 
 dbController.getSessionData = (req, res, next) => {
