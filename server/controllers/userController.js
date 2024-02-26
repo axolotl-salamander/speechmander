@@ -46,7 +46,7 @@ userController.verifyUser = (req, res, next) => {
 
         if (result) {
           // Passwords match
-          console.log('confirmed')
+          console.log('confirmed');
           res.locals.user = user;
           return next();
         } else {

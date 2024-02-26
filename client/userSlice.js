@@ -8,11 +8,15 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  userLoggedIn: (state, action) => {
-    state.isLoggedIn = true;
-  },
-  updateSessionData: (state, action) => {
-    state.sessionData.push(action.payload);
+  reducer: {
+    userLoggedIn: (state, action) => {
+      state.isLoggedIn = true;
+    },
+    updateSessionData: (state, action) => {
+      state.sessionData.push(action.payload);
+    },
   },
 });
+
+export const { updateSessionData } = userSlice.actions;
 export default userSlice.reducer;

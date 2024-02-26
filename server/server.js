@@ -1,5 +1,5 @@
 const express = require('express');
-
+const path = require('path');
 const app = express();
 
 // const testRouter = require('./routes/testRouter');
@@ -19,7 +19,7 @@ app.use('/api', apiRouter);
 app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
-  res.status(200).send('hello world!');
+  res.status(200).sendFile(path.resolve(__dirname, '../dist/index.html'));
 });
 
 // catch-all route handler for any requests to an unknown route
