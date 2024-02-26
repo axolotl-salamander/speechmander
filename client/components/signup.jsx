@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function Signup() {
   const [loginData, setLoginData] = useState({
-    username: "",
-    email: "",
-    password: "",
+    username: '',
+    email: '',
+    password: '',
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     //send data to server
-    fetch("/user/create", {
-      method: "POST",
+    fetch('/user/create', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(loginData),
     })
@@ -21,10 +21,10 @@ function Signup() {
         return response.json();
       })
       .then((data) => {
-        console.log("Success:", data);
+        console.log('Success:', data);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error('Error:', error);
       });
   };
 
@@ -36,7 +36,7 @@ function Signup() {
   };
 
   return (
-    <form id = "signupform" onSubmit={handleSubmit}>
+    <form id="signupform" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
         <input

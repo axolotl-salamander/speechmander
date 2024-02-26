@@ -11,16 +11,29 @@ const express = require('express');
 const apiController = require('../controllers/apiController');
 const dbController = require('../controllers/dbController');
 const userController = require('../controllers/userController');
-
+const cookieController = require('../controllers/cookieController');
+const sessionController = require('../controllers/sessionController');
 const router = express.Router();
 
-router.post('/create', userController.createUser, (req, res) => {
-  res.status(200).send('user created!');
-});
+router.post(
+  '/create',
+  userController.createUser,
+  sessionController.startSession,
+  cookieController.setSSIDCookie,
+  (req, res) => {
+    res.status(200).send('user created!');
+  }
+);
 
-router.post('/verify', userController.verifyUser, (req, res) => {
-  res.status(200).send(res.locals.user);
-});
+router.post(
+  '/verify',
+  sessionController.startSession,
+  cookieController.setSSIDCookie,
+  userController.verifyUser,
+  (req, res) => {
+    res.status(200).send(res.locals.user);
+  }
+);
 
 router.patch('/update', userController.updateUser, (req, res) => {
   res.status(200).send('user updated!');

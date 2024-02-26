@@ -3,7 +3,8 @@ const express = require('express');
 const apiController = require('../controllers/apiController');
 const dbController = require('../controllers/dbController');
 const dataController = require('../controllers/dataController');
-
+const sessionController = require('../controllers/sessionController');
+const cookieController = require('../controllers/cookieController');
 const router = express.Router();
 
 // handle GET request to /api/
@@ -16,6 +17,8 @@ const router = express.Router();
 // this request should call speech-to-text api with new recording and save the returned data to the database
 router.get(
   '/',
+  sessionController.isLoggedIn,
+  cookieController.setSSIDCookie,
   apiController.analyzeAudioFile,
   dbController.postTranscript,
   dbController.getTranscriptId,
