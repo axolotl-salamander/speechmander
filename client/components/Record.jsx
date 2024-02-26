@@ -56,7 +56,6 @@ const Record = () => {
         setTimeout(() => {
           player.play();
         }, 1000);
-        setFinishedRecording(true);
 
         // return setFinishedRecording(true);
       })
@@ -82,91 +81,7 @@ const Record = () => {
 
   return (
     <>
-      <div></div>
-      {(isRecording || transcript) && (
-        <div className="record-container">
-          <div>
-            <p>{finishedRecording ? 'Recorded' : 'Recording'}</p>
-            <p>
-              {finishedRecording
-                ? 'Analyzing your speech'
-                : 'Start speaking...'}
-            </p>
-          </div>
-        </div>
-      )}
-      {
-        // (isRecording) && (
-        //   <div className="record-container">
-        //     <div>
-        //       <p>{isRecording ? 'Recording. Start speaking...' : 'Recorded'}</p>
-        //     </div>
-        //   </div>
-        // )
-      }
-
-      {transcript && (
-        <div className="transcript-container">
-          <p>{transcript}</p>
-        </div>
-      )}
-
-      {isRecording && (
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="100"
-            height="100"
-            viewBox="0 0 21 21"
-          >
-            <g fill="none" stroke="currentColor">
-              <circle cx="10.5" cy="10.5" r="5" />
-              <circle cx="10.5" cy="10.5" r="3" fill="currentColor" />
-            </g>
-          </svg>
-        </div>
-      )}
-      {/* {
-        transcript && (
-          <div className="transcript-container">
-            <p>{transcript}</p>
-          </div>
-        )
-      } */}
-
-      {!isRecording && mp3File && (
-        <audio controls src="new-speech-recording.mp3"></audio>
-      )}
-      {/* {
-        (!isRecording && mp3File) && (
-          <audio controls src='new-speech-recording.mp3'></audio>
-        )
-      } */}
-
       <div className="buttons">
-        {!isRecording ? (
-          <div onClick={handleToggleRecording} className="record-btn">
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
-                <path fill="currentColor" stroke="currentColor" d="M1.436 12.33a1.14 1.14 0 0 0 .63 1a1.24 1.24 0 0 0 1.22 0l8.65-5.35a1.11 1.11 0 0 0 0-2L3.286.67a1.24 1.24 0 0 0-1.22 0a1.14 1.14 0 0 0-.63 1z"/>
-              </svg> */}
-            I'm Ready
-          </div>
-        ) : (
-          <button onClick={handleToggleRecording} className="stop-record-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="50"
-              viewBox="0 0 14 14"
-            >
-              <path
-                fill="currentColor"
-                stroke="currentColor"
-                d="M1.5 0A1.5 1.5 0 0 0 0 1.5v11A1.5 1.5 0 0 0 1.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 12.5 0z"
-              />
-            </svg>
-          </button>
-        )}
         {
           <div className="currently-recording-container">
             <h3>
@@ -192,20 +107,6 @@ const Record = () => {
               <p>{!isRecording ? "I'm Ready" : 'Stop'}</p>
             </div>
           </div>
-          // !isRecording
-          // ? <div className="currently-recording-container">
-          //   <h3>{!isRecording ? 'Ready to start recording?' : 'Recording...'}</h3>
-          //   <div onClick={handleToggleRecording} className='record-btn'>
-          //     <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 26 26">
-          //       <path fill="currentColor" d="M13 6.188a6.812 6.812 0 1 0 0 13.625a6.812 6.812 0 1 0 0-13.625z"/>
-          //     </svg>
-          //     <p>I'm Ready</p>
-          //   </div>
-          // </div>
-          // : <div className="currently-recording-container">
-          //   <h3>Recording...</h3>
-          //   <button onClick={handleToggleRecording} className='stop-record-btn'>Stop</button>
-          // </div>
         }
       </div>
       <Link to="/results">
