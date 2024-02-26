@@ -1,22 +1,12 @@
-// start button
-// play button
-// stop button
-// reload button
-import React, { useEffect, useState } from "react";
-import store from "../store";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const ButtonComponent = () => {
-  // const [state, setState] = useState([initialState]);
-  // useEffect(() => {
-  //   return () => {};
-  // }, [store]);
+const ButtonComponent = ({to, btnText}) => {
+
   return (
-    <div>
-      <button>{/* {start button} */}</button>
-      <button>{/* {play button} */}</button>
-      <button>{/* {stop button} */}</button>
-      <button>{/* {reload button} */}</button>
-    </div>
+    <Link to={to}>
+      <button>{btnText}</button>
+    </Link>
   );
 };
 
