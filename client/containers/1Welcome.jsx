@@ -10,12 +10,6 @@ const WelcomeContainer = () => {
 
   return (
     <>
-      <div>
-        <Login />
-      </div>
-      <div>
-        <Signup />
-      </div>
       <div className="nav-container">
         <div className="logo">
           <h3>Speechr</h3>
@@ -36,13 +30,13 @@ const WelcomeContainer = () => {
 
       <div className="hero-container">
         <h1>Your speech teacher.</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolor
-          consequatur dolorem dicta, quod fugiat ullam quo maiores, est magni
-          laborum vel soluta ipsum. Molestias, asperiores! Impedit cupiditate
-          eum eius?
-        </p>
-        <ButtonComponent to="/record" btnText="Start!" />
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolor consequatur dolorem dicta, quod fugiat ullam quo maiores, est magni laborum vel soluta ipsum. Molestias, asperiores! Impedit cupiditate eum eius?</p>
+        {/* <ButtonComponent to='/record' btnText='Start!' /> */}
+        <div className="auth-btns">
+          <ButtonComponent to='/signup' btnText='Sign up' />
+          <p>or</p>
+          <ButtonComponent to='/login' btnText='Login' />
+        </div>
       </div>
     </>
   );

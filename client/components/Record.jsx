@@ -58,8 +58,6 @@ const Record = () => {
         setTimeout(() => {
           player.play();
         }, 1000);
-
-        // return setFinishedRecording(true);
       })
       .catch((err) =>
         console.log('There was an error retreiving recorded file.')
@@ -125,12 +123,14 @@ const Record = () => {
               </svg>
               <p>{!isRecording ? "I'm Ready" : 'Stop'}</p>
             </div>
+            <Link to="/results">
+              <button className="btn-component-class" onClick={handleApi}>
+                Stop
+              </button>
+            </Link>
           </div>
         }
       </div>
-      <Link to="/results">
-        <button onClick={handleApi}>Show Results!</button>
-      </Link>
     </>
   );
 };

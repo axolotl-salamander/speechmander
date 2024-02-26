@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ButtonComponent from './ButtonComponent.jsx';
 
 function Login() {
   const [verifyData, setVerifyData] = useState({
@@ -58,7 +59,8 @@ function Login() {
           required
         />
       </div>
-      <button type="submit">Login</button>
+      {/* <button type="submit">Login</button> */}
+      <ButtonComponent to='/record' btnText='Login' />
     </form>
   );
 }

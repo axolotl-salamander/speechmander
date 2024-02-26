@@ -5,7 +5,7 @@ const ButtonComponent = ({to, btnText}) => {
 
   return (
     <Link to={to}>
-      <button>{btnText}</button>
+      <button className="btn-component-class">{btnText}</button>
     </Link>
   );
 };

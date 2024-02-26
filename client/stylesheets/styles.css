@@ -34,6 +34,43 @@ h1 {
     flex-direction: row;
     justify-content: right;
 }
+.auth-btns {
+    display: flex;
+    align-items: center;
+}
+
+.auth-btns > p {
+    margin-right: 15px;
+}
+
+#signupform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#signupform > form > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-component-class {
+    background: none;
+    cursor: pointer;
+    background-color: none;
+    border: 2px gray solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 15px;
+}
+
+.btn-component-class:hover {
+    border: 2px solid black;
+    background-color: lightgray;
+    transition: .5s ease-in-out;
+}
 
 .nav-container, .hero-container {
     padding: 25px;
@@ -86,12 +123,12 @@ justify-content: center;
 
 .record-outer-container {
     border: 2px solid gray;
-    border-radius: 10px;
-    padding: 100px;
-    display: flex;
+    border-radius: 25px;
+    padding: 50px;
+    display: 70px;
     align-items: center;
-    justify-content: end;
-    width: 50%;
+    justify-content: space-between;
+    width: 60%;
 }
 
 .record-container {
@@ -117,7 +154,7 @@ justify-content: center;
 
 buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
 }
@@ -126,7 +163,7 @@ buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 50vw;
+    width: 100%;
 }
 
 .record-btn {
@@ -142,6 +179,7 @@ buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-right: 15px;
 }
 
 .pulse-animation {
