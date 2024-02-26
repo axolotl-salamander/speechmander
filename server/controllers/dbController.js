@@ -122,5 +122,4 @@ dbController.getSessionData = (req, res, next) => {
       })
     );
 };
-
 module.exports = dbController;
