@@ -9,6 +9,7 @@ const Record = () => {
   // const [transcript, setTranscript] = useState('');
   const [isBlocked, setIsBlocked] = useState(true);
   const [mp3File, setMp3File] = useState();
+  const [finishedRecording, setFinishedRecording] = useState();
   
   useEffect(() => {
     navigator.getUserMedia({ audio: true }, () => {
@@ -34,6 +35,8 @@ const Record = () => {
   };
 
   const stopRecording = () => {
+    setFinishedRecording(true);
+    console.log('logging finished recording', finishedRecording);
     Mp3Recorder.stop().getMp3()
       .then(([buffer, blob]) => {
         const file = new File(buffer, 'new-speech-recording.mp3', {
@@ -50,8 +53,6 @@ const Record = () => {
         setTimeout(() => {
           player.play();
         }, 1000);
-
-        // return setFinishedRecording(true);
       })
       .catch(err => console.log('There was an error retreiving recorded file.'));
   };
