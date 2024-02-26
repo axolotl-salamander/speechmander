@@ -78,18 +78,23 @@ justify-content: center;
 
 .record-outer-container {
     border: 2px solid gray;
-    border-radius: 25px;
+    border-radius: 10px;
     padding: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 50%;
 }
 
 .record-container {
     display: flex;
     border: solid red;
-    padding: 10%;
-    margin: 10px 0;
+    /* padding: 10%; */
+    /* margin: 10px 0; */
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    border-radius: 10px;
 }
 
 .transcript-container {
@@ -103,20 +108,68 @@ justify-content: center;
 }
 
 buttons {
-display: flex;
-justify-content: space-around;
-width: 100%;
-margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.currently-recording-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50vw;
 }
 
 .record-btn {
+    font-size: 14px;
+    color: gray;
+    width: 100px;
     cursor: pointer;
     border-radius: 25px;
     padding: 10px 20px;
     cursor: pointer;
-    background-color: lightgray;
+    border: 3px lightpink solid;
+    /* background-color: lightgray; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    transition: background-color 0.3s ease;
+.pulse-animation {
+    animation: pulse .5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        border-color: rgb(227, 39, 39);
+    }
+    50% {
+        border-color: rgb(255, 205, 205);
+    }
+    100% {
+        border-color: rgb(227, 39, 39);
+    }
+}
+
+.record-btn > svg {
+    width: 25px;
+    height: 25px;
+    color: red;
+    /* margin-right: 10px; */
+}
+
+.record-btn:hover {
+    background-color: lightpink;
+    transition: .25s ease;
+    color: white;
+}
+
+.record-btn > svg:hover {
+    width: 25px;
+    height: 25px;
+    color: red;
+    /* margin-right: 10px; */
 }
 
 stop-record-btn {
