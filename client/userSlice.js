@@ -8,7 +8,7 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducer: {
+  reducers: {
     userLoggedIn: (state, action) => {
       state.isLoggedIn = true;
     },

@@ -121,10 +121,12 @@ const Record = () => {
                   d="M13 6.188a6.812 6.812 0 1 0 0 13.625a6.812 6.812 0 1 0 0-13.625z"
                 />
               </svg>
-              <p>{!isRecording ? 'I\'m Ready' : 'Stop'}</p>
+              <p>{!isRecording ? "I'm Ready" : 'Stop'}</p>
             </div>
             <Link to="/results">
-              <button className='btn-component-class' onClick={handleApi}>Stop</button>
+              <button className="btn-component-class" onClick={handleApi}>
+                Stop
+              </button>
             </Link>
           </div>
         }

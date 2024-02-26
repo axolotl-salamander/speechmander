@@ -4,11 +4,17 @@ const CurrentSession = ({ currSession }) => {
   return (
     <div>
       <h1>Current Session</h1>
-      <p>Scripts:</p>
-      <p>Total Word Count</p>
-      <p>Word per Second</p>
-      <p>Avg. Pause Duration</p>
-      <p>Total Pauses</p>
+      {currSession ? (
+        <>
+          <p>Scripts:{currSession.wordsWithPauses}</p>
+          <p>Total Word Count: {currSession.wordCount}</p>
+          <p>Word per Second: {currSession.wordPerSec}</p>
+          <p>Avg. Pause Duration{currSession.averagePauseDuration}</p>
+          <p>Total Pauses{currSession.totalPauses}</p>
+        </>
+      ) : (
+        <p>Loading Data...</p>
+      )}
     </div>
   );
 };
