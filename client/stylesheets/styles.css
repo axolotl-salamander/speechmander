@@ -182,6 +182,22 @@ buttons {
     margin-right: 15px;
 }
 
+.record-again-btn {
+    font-size: 14px !important;
+    color: gray !important;
+    width: 100px !important;
+    cursor: pointer !important;
+    border-radius: 25px !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+    border: 3px lightpink solid !important;
+    /* background-color: lightgray; */
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-right: 15px !important;
+}
+
 .pulse-animation {
     animation: pulse .5s infinite ease-in-out;
 }
@@ -205,6 +221,7 @@ buttons {
     /* margin-right: 10px; */
 }
 
+
 .record-btn:hover {
     background-color: lightpink;
     transition: .25s ease;
@@ -218,6 +235,10 @@ buttons {
     /* margin-right: 10px; */
 }
 
+.results-header {
+    font-size: 42px;
+}
+
 stop-record-btn {
     background-color: blue;
     border-radius: 4px;
@@ -225,3 +246,16 @@ stop-record-btn {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
+.results-container {
+    margin-bottom: 20px;
+}
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 50px;
+}
+

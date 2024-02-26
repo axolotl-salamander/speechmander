@@ -12,7 +12,7 @@ const Record = () => {
   // const [transcript, setTranscript] = useState('');
   const [isBlocked, setIsBlocked] = useState(true);
   const [mp3File, setMp3File] = useState();
-
+  const [resultsReady, setResultsReady] = useState(false);
   useEffect(() => {
     navigator.getUserMedia(
       { audio: true },
@@ -83,16 +83,19 @@ const Record = () => {
   //Sonia's API call to server
   const dispatch = useDispatch();
 
-  const handleApi = () => {
+  const handleApi = async () => {
     console.log('handleApi called');
 
-    fetch('/api')
+    await fetch('/api')
       .then((response) => response.json())
       .then((data) => {
         dispatch(updateSessionData(data));
         console.log('datafromDB: ', data);
       })
       .catch((err) => console.error('Error: ', err));
+
+     setResultsReady(true) 
+
   };
   ////////////////////////////////////
 
@@ -122,14 +125,15 @@ const Record = () => {
                 />
               </svg>
               <p>{!isRecording ? "I'm Ready" : 'Stop'}</p>
-            </div>
-            <Link to="/results">
-              <button className="btn-component-class" onClick={handleApi}>
-                Stop
-              </button>
-            </Link>
+            </div> {!resultsReady ? (<button className="btn-component-class" onClick={handleApi}>
+          Analyze</button>) : 
+            (<Link to="/results">
+              <button className="btn-component-class" >
+              Results Ready</button>
+            </Link>) }
+            
           </div>
-        }
+}
       </div>
     </>
   );

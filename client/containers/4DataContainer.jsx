@@ -29,15 +29,18 @@ const DataContainer = () => {
 
   return (
     <>
-      <CurrentSession currSession={currSession} />
-      <h1>Session Trends</h1>
-      <SessionTrends dataArr={wordCountTrends} title="wordCountTrends" />
-      <SessionTrends dataArr={wordPerSec} title="wordPerSec" />
-      <SessionTrends dataArr={avgPauseDur} title="avgPauseDur" />
-      <SessionTrends dataArr={totalPauses} title="totalPauses" />
-      <Link to="/record">
-        <button className="record-btn">Record Again!</button>
-      </Link>
+      <div className="data-container">
+        <CurrentSession className='curr-session-div' currSession={currSession} />
+        <h1 className='results-header'>Session Trends</h1>
+        <SessionTrends dataArr={wordCountTrends} title="wordCountTrends" />
+        <SessionTrends dataArr={wordPerSec} title="wordPerSec" />
+        <SessionTrends dataArr={avgPauseDur} title="avgPauseDur" />
+        <SessionTrends dataArr={totalPauses} title="totalPauses" />
+        <ButtonComponent className='record-again-btn' to='/record' btnText='Record again!' />
+      </div>
+      {/* <Link to="/record">
+        <button className="record-btn data-container-btn">Record Again!</button>
+      </Link> */}
     </>
   );
 };
