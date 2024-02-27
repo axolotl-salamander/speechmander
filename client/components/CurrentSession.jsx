@@ -3,14 +3,16 @@ import React from 'react';
 const CurrentSession = ({ currSession }) => {
   return (
     <div>
-      <h1>Current Session</h1>
+      <h1 className='results-header'>Current Session</h1>
       {currSession ? (
         <>
-          <p>Scripts:{currSession.wordsWithPauses}</p>
-          <p>Total Word Count: {currSession.wordCount}</p>
-          <p>Word per Second: {currSession.wordPerSec}</p>
-          <p>Avg. Pause Duration{currSession.averagePauseDuration}</p>
-          <p>Total Pauses{currSession.totalPauses}</p>
+          <div className="results-container">
+            <p><strong>Transcript:</strong> {currSession.transcripts}</p>
+            <p><strong>Total Word Count:</strong> {currSession.wordCount}</p>
+            <p><strong>Word per Second:</strong> {currSession.wordPerSec}</p>
+            <p><strong>Avg. Pause Duration:</strong> {currSession.averagePauseDuration}</p>
+            <p><strong>Total Pauses: </strong>{currSession.totalPauses}</p>
+          </div>
         </>
       ) : (
         <p>Loading Data...</p>

@@ -87,7 +87,7 @@ dataController.analyzeFluency = (req, res, next) => {
   //   "seconds"
   // );
   res.locals.totalPauses = totalPauses;
-  res.locals.averagePauseDuration = averagePauseDuration;
+  res.locals.averagePauseDuration = Number(averagePauseDuration).toFixed(2);
   res.locals.wordsWithPauses = wordsWithPauses.join(' ');
 
   return next();

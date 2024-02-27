@@ -30,7 +30,7 @@ const WelcomeContainer = () => {
 
       <div className="hero-container">
         <h1>Your speech teacher.</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolor consequatur dolorem dicta, quod fugiat ullam quo maiores, est magni laborum vel soluta ipsum. Molestias, asperiores! Impedit cupiditate eum eius?</p>
+        <p>Your personal speaking coach. Practice anytime, get instant feedback, and master your presentation professionalism.</p>
         {/* <ButtonComponent to='/record' btnText='Start!' /> */}
         <div className="auth-btns">
           <ButtonComponent to='/signup' btnText='Sign up' />

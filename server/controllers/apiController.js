@@ -15,7 +15,7 @@ apiController.getTranscribeData = (req, res, next) => {
 
 apiController.analyzeAudioFile = async (req, res, next) => {
   const audio = fs.readFileSync(
-    path.join(__dirname, '../../client/assets/bad-speech.mp3')
+    path.join(__dirname, '../../client/assets/fake-it-till-u-make-it.mp3')
   );
   //post transcribe data to database
   try {
