@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+h2 {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h3 {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-family: "DM Serif Display", serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 72px;
+    line-height: 1;
+}
+
+/* WELCOME PAGE */
+
+.signupform {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.auth-btns {
+    display: flex;
+    align-items: center;
+}
+
+.auth-btns > p {
+    margin-right: 15px;
+}
+
+#signupform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#signupform > form > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-component-class {
+    background: none;
+    cursor: pointer;
+    background-color: none;
+    border: 2px gray solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 15px;
+}
+
+.btn-component-class:hover {
+    border: 2px solid black;
+    background-color: lightgray;
+    transition: .5s ease-in-out;
+}
+
+.nav-container, .hero-container {
+    padding: 25px;
+    margin: 0 10%;
+    position: absolute;
+}
+
+.hero-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 75%;
+}
+
+.hero-container > h1, .hero-container > p {
+    margin-bottom: 25px;
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+}
+
+.logo {
+    display: flex;
+}
+
+.logo > h3 {
+    margin-right: 10px;
+}
+
+.logo-icon {
+    width: 25px;
+    height: 25px;
+}
+
+/* play container */
+
+.play-container {
+display: flex;
+height: 75vh;
+/* padding: 20%; */
+/* margin: 3% 30%; */
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.record-outer-container {
+    border: 2px solid gray;
+    border-radius: 25px;
+    padding: 50px;
+    display: 70px;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.record-container {
+    display: flex;
+    border: solid red;
+    /* padding: 10%; */
+    /* margin: 10px 0; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    border-radius: 10px;
+}
+
+.transcript-container {
+    display: flex;
+    border: solid purple;
+    padding: 20%;
+    margin: 3% 30%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.currently-recording-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.record-btn {
+    font-size: 14px;
+    color: gray;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 3px lightpink solid;
+    /* background-color: lightgray; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.record-again-btn {
+    font-size: 14px !important;
+    color: gray !important;
+    width: 100px !important;
+    cursor: pointer !important;
+    border-radius: 25px !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+    border: 3px lightpink solid !important;
+    /* background-color: lightgray; */
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-right: 15px !important;
+}
+
+.pulse-animation {
+    animation: pulse .5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        border-color: rgb(227, 39, 39);
+    }
+    50% {
+        border-color: rgb(255, 205, 205);
+    }
+    100% {
+        border-color: rgb(227, 39, 39);
+    }
+}
+
+.record-btn > svg {
+    width: 25px;
+    height: 25px;
+    color: red;
+    /* margin-right: 10px; */
+}
+
+
+.record-btn:hover {
+    background-color: lightpink;
+    transition: .25s ease;
+    color: white;
+}
+
+.record-btn > svg:hover {
+    width: 25px;
+    height: 25px;
+    color: red;
+    /* margin-right: 10px; */
+}
+
+.results-header {
+    font-size: 42px;
+}
+
+stop-record-btn {
+    background-color: blue;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.results-container {
+    margin-bottom: 20px;
+}
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 50px;
+}
+
